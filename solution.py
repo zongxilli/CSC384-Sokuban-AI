@@ -1,4 +1,4 @@
-#   Look for #IMPLEMENT tags in this file. These tags indicate what has
+#   Look for  tags in this file. These tags indicate what has
 #   to be implemented to complete the warehouse domain.
 
 #   You may add only standard python imports---i.e., ones that are automatically
@@ -21,7 +21,7 @@ def sokoban_goal_state(state):
   return True
 
 def heur_manhattan_distance(state):
-#IMPLEMENT
+
     '''admissible sokoban puzzle heuristic: manhattan distance'''
     '''INPUT: a sokoban state'''
     '''OUTPUT: a numeric value that serves as an estimate of the distance of the state to the goal.'''
@@ -250,7 +250,7 @@ def any_box_in_state_is_dead(state) :
 
 
 def heur_alternate(state):
-#IMPLEMENT
+
     '''a better heuristic'''
     '''INPUT: a sokoban state'''
     '''OUTPUT: a numeric value that serves as an estimate of the distance of the state to the goal.'''
@@ -295,7 +295,7 @@ def heur_zero(state):
     return 0
 
 def fval_function(sN, weight):
-#IMPLEMENT
+
     """
     Provide a custom formula for f-value computation for Anytime Weighted A star.
     Returns the fval of the state contained in the sNode.
@@ -315,7 +315,7 @@ def fval_function(sN, weight):
     return sN.gval + weight * sN.hval
 
 def fval_function_XUP(sN, weight):
-#IMPLEMENT
+
     """
     Another custom formula for f-value computation for Anytime Weighted A star.
     Returns the fval of the state contained in the sNode.
@@ -336,7 +336,7 @@ def fval_function_XUP(sN, weight):
   
 
 def fval_function_XDP(sN, weight):
-#IMPLEMENT
+
     """
     A third custom formula for f-value computation for Anytime Weighted A star.
     Returns the fval of the state contained in the sNode.
@@ -358,7 +358,7 @@ def fval_function_XDP(sN, weight):
     return result
   
 def compare_weighted_astars():
-#IMPLEMENT
+
     '''Compares various different implementations of A* that use different f-value functions'''
     '''INPUT: None'''
     '''OUTPUT: None'''
@@ -388,7 +388,7 @@ def compare_weighted_astars():
           pass
 
 def anytime_weighted_astar(initial_state, heur_fn, weight=1., timebound = 10):
-#IMPLEMENT
+
   '''Provides an implementation of anytime weighted a-star, as described in the HW1 handout'''
   '''INPUT: a sokoban state that represents the start state and a timebound (number of seconds)'''
   '''OUTPUT: A goal state (if a goal is found), else False'''
@@ -453,7 +453,7 @@ def anytime_weighted_astar(initial_state, heur_fn, weight=1., timebound = 10):
   return best_result_found
 
 def anytime_gbfs(initial_state, heur_fn, timebound = 10):
-#IMPLEMENT
+
   '''Provides an implementation of anytime greedy best-first search, as described in the HW1 handout'''
   '''INPUT: a sokoban state that represents the start state and a timebound (number of seconds)'''
   '''OUTPUT: A goal state (if a goal is found), else False'''
