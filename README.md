@@ -3,14 +3,14 @@ University of Toronto CSC384(Introduction to Artificial Intelligence) Assignment
 
 A* Algorithm & Compare Weighted A* Algorithm & Anytime Weighted A* & Anytime Greedy Best First Search Algorithm (with custom heuristic functions)
 
-# Introduction
+## Introduction
 The goal of this assignment will be to implement a working solver for the puzzle game Sokoban shown in Figure 1. Sokoban is a puzzle game in which a warehouse robot must push boxes into storage spaces. The rules hold that only one box can be moved at a time, that boxes can only be pushed by a robot and not pulled, and that neither robots nor boxes can pass through obstacles (walls or other boxes). In addition, robots cannot push more than one box, i.e., if there are two boxes in a row, the robot cannot push them. The game is over when all the boxes are in their storage spots.
 
 In our version of Sokoban the rules are slightly more complicated, as there may be more than one warehouse robot available to push boxes. These robots cannot pass through one another nor can they move simultaneously, however.
 
 Sokoban can be played online at this link (Links to an external site.). We recommend that you familiarize yourself with the rules and objective of the game before proceeding, although it is worth noting that the version that is presented online is only an example. We will give a formal description of the puzzle in the next section.
 
-# Formal Description
+## Formal Description
 Sokoban has the following formal description. Read the description carefully. Note that our version differs from the standard one.
 
 The puzzle is played on a rectangle board that is a grid board with N squares in the x-dimension and M squares in the y-dimension.
@@ -22,7 +22,7 @@ Ideally, we will want our robots to organize everything before the supervisor ar
 
 Your goal is to explore weighting schemes that affect A* and then to use one in order to implement anytime algorithms for this problem.  These anytime algorithms will generate better solutions (i.e. shorter plans) the more computation time they are given.
 
-# Starter Code
+## Starter Code
 The code for this assignment consists of several Python files, some of which you will need to read and understand in order to complete the assignment and some of which you can ignore. You can download all the code and supporting as a Zipped file archive by clicking here  download.  In the archive, you will find the following files.
 
 Files you'll edit andsubmit on Markus:
@@ -37,7 +37,7 @@ See the autograder tutorial in Assignment 0 for more information about using the
 
 An example of the application of the search code to the Water Jugs problem (in the asynchronous lectures) can be found in this file.   downloadRun $python3 WaterJugs.py for an illustration of the search code's use in that domain.
 
-# Details of Starter Code
+## Details of Starter Code
 The file search.py, which is available from the website, provides a generic search engine framework and code to perform several different search routines. This code will serve as a base for your Sokoban solver. A brief description of the functionality of search.py follows. The code itself is documented and worth reading. The ﬁle search.py contains:
 
 An object of class StateSpace represents a node in the state space of a generic search problem. The base class defines a fixed interface that is used by the SearchEngine class to perform search in that state space. 
@@ -86,12 +86,12 @@ The file solution.py contains the methods that need to be implemented.
 
 The file autograder.py runs some tests on your code to give you an indication of how well your methods perform.
 
-# What to Submit
+## What to Submit
 You will be using MarkUs to submit your assignment. You will submit:
 
 Your modified solution.py
 Your comparisons of A* variations, which you will place in a file called comparison.csv
-# Your Job
+## Your Job
 To complete this assignment you must modify solution.py to:
 
 Implement a Manhattan distance heuristic (heur_manhattan_distance(state)). This heuristic will be used to estimate how many moves a current state is from a goal state. The Manhattan distance between coordinates (x0,y0) and (x1,y1) is | x0 − x1 | + | y0 − y1 | . Your implementation should calculate the sum of Manhattan distances between each box that has yet to be stored and the storage point nearest to it. Ignore the positions of obstacles in your calculations and assume that many boxes can be stored at one location
@@ -101,7 +101,7 @@ Implement Anytime Weighted A* (anytime_weighted_astar(initial_state, heur_fn, we
 Implement Anytime Greedy Best-First Search (anytime_gbfs(initial_state, heur_fn, timebound)). This is another iterative search that can run within a fixed time bound. More details are below.
 Note that when we are testing your code, we will limit each run of your algorithm on teach.cs to 5 seconds. Instances that are not solved within this limit will provide an interesting evaluation metric: failure rate.
 
-# Weighted A* and Variations 
+### Weighted A* and Variations 
 Instead of A*s regular node-valuation formula f(node) = g(node) + h(node), Weighted A* introduces a weighted formula:
 
 f(node) = g(node) + w * h(node)
@@ -138,38 +138,38 @@ E is the number of paths generated by the successor function during the search
 
 F is the overall solution cost
 
-# Anytime Weighted A* Search
+### Anytime Weighted A* Search
 Even with an admissible heuristic, the first solution found by any of the Weighted A* variations may not be optimal when w is anything larger than 1. We can therefore keep searching after we have found a solution in order to try and find a better one. Anytime Weighted A* continues to search until either there are no nodes left to expand (and our best solution is the optimal one) or it runs out of time. Since we have found a path to the goal after the first search iteration, we can introduce a cost bound for pruning in future iterations: if node has a g(node)+h(node) value greater than the best path to the goal found so far, we can prune it. 
 
 Implement an anytime version of A* search using the following function stub: anytime_weighted_astar(initial_state, heur_fn, weight, timebound).  This should be an iterative search that makes use one of your weighted A* variations.  Your function should initialize a custom search engine with an f-value function that includes a weight.  When a solution is found, remember it and, if time allows, iterate upon it.  Change your weight at each iteration and enforce a cost boundary so that you will move toward more optimal solutions at each iteration.
 
-# Anytime Greedy Best-First Search
+### Anytime Greedy Best-First Search
 We can also create an anytime version of greedy best first search.  This will not depend on a weight!  As you remember from class, greedy best-ﬁrst search expands nodes with lowest h(node) ﬁrst. The solution found by a greedy algorithm may not be optimal. Anytime greedy-best ﬁrst search (which is called anytime_gbfs in the code) continues searching after a greedy solution is found in order to improve solution quality. Since we have found a path to the goal after the ﬁrst iteration, we can introduce a cost bound for pruning in subsequent iterations: if a node has g(node) greater than the best path to the goal found so far, we can prune it. The algorithm returns either when we have expanded all non-pruned nodes, in which case the best solution found by the algorithm is the optimal solution, or when it runs out of time. We will prune based on the g-value of the node only because greedy best-ﬁrst search is not necessarily run with an admissible heuristic.
 
 Record the time when anytime searches are called with os.times()[0]. Each time you call search, you should update the time bound with the remaining allowed time. 
 
-# Marking Criteria
-(1) Test of Manhattan distance based heuristic (10% max) 
+## Marking Criteria
+### (1) Test of Manhattan distance based heuristic (10% max) 
 
-(2) Test of the heuristic function in the context of best first search: 5 seconds (based on # solved; 20% max)
+### (2) Test of the heuristic function in the context of best first search: 5 seconds (based on # solved; 20% max)
 — 5% for solving more than 2 problems 
 — >= 10% awarded based on # solved relative to Manhattan distance
 — >= 15% awarded based on # solved relative to “better” benchmark  
 - additional points (up to 5) pro-rated (full marks if entire test set is solved)
 - points here are based on # solved, not on solution length
 
-(3) Comparison of weighted A* strategies (20%)
+### (3) Comparison of weighted A* strategies (20%)
 - 5% for correct implementation of each alternative f-value function (15% total)
 - 5% for correct search statistics in comparison.csv
 
-(4) Test of the iterative weighted a star function: 5 seconds (based on # solved and length; %25 max) 
+### (4) Test of the iterative weighted a star function: 5 seconds (based on # solved and length; %25 max) 
 — 5% for solving more than 2 problems 
 — >= 10% awarded based on # solved relative to Manhattan distance 
 — >= 20% awarded based on # solved relative to “better” benchmark 
 - additional points (up to 5) pro-rated (full marks if entire test set is solved) 
 - points here are based on both # solved and length of solution 
 
-(5) Test of anytime best first search: 5 seconds (based on # solved; 25% max)
+### (5) Test of anytime best first search: 5 seconds (based on # solved; 25% max)
 — 5% for solving more than 2 problems
 — >= 10% awarded based on # solved relative to Manhattan distance
 — >= 20% awarded based on # solved relative to “better” benchmark  
