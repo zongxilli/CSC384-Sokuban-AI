@@ -149,27 +149,27 @@ We can also create an anytime version of greedy best first search.  This will no
 Record the time when anytime searches are called with os.times()[0]. Each time you call search, you should update the time bound with the remaining allowed time. 
 
 ## Marking Criteria
-### (1) Test of Manhattan distance based heuristic (10% max) 
+#### (1) Test of Manhattan distance based heuristic (10% max) 
 
-### (2) Test of the heuristic function in the context of best first search: 5 seconds (based on # solved; 20% max)
+#### (2) Test of the heuristic function in the context of best first search: 5 seconds (based on # solved; 20% max)
 — 5% for solving more than 2 problems 
 — >= 10% awarded based on # solved relative to Manhattan distance
 — >= 15% awarded based on # solved relative to “better” benchmark  
 - additional points (up to 5) pro-rated (full marks if entire test set is solved)
 - points here are based on # solved, not on solution length
 
-### (3) Comparison of weighted A* strategies (20%)
+#### (3) Comparison of weighted A* strategies (20%)
 - 5% for correct implementation of each alternative f-value function (15% total)
 - 5% for correct search statistics in comparison.csv
 
-### (4) Test of the iterative weighted a star function: 5 seconds (based on # solved and length; %25 max) 
+#### (4) Test of the iterative weighted a star function: 5 seconds (based on # solved and length; %25 max) 
 — 5% for solving more than 2 problems 
 — >= 10% awarded based on # solved relative to Manhattan distance 
 — >= 20% awarded based on # solved relative to “better” benchmark 
 - additional points (up to 5) pro-rated (full marks if entire test set is solved) 
 - points here are based on both # solved and length of solution 
 
-### (5) Test of anytime best first search: 5 seconds (based on # solved; 25% max)
+#### (5) Test of anytime best first search: 5 seconds (based on # solved; 25% max)
 — 5% for solving more than 2 problems
 — >= 10% awarded based on # solved relative to Manhattan distance
 — >= 20% awarded based on # solved relative to “better” benchmark  
